@@ -1,12 +1,20 @@
 # Push-Button-Controlled-LED-Using-STM32-Microcontroller
 Aim
+
 To interface an external push button with an STM32 microcontroller and control the state of an LED based on the push-button input.
+
+
 Apparatus Required
+
 S. No. Component Quantity 1 STM32 development board 1 2 Push button 1 3 LED 1 4 220–330 Ω resistor 1 5 10 kΩ resistor 1 6 Breadboard 1 7 Jumper wires As required 8 USB cable 1
+
+
 Algorithm
+
 Step 1: Start the program. Step 2: Initialize the HAL library, system clock (64 MHz), and UART peripheral. Step 3: Enable clocks for GPIO Port A and Port C. Step 4: Configure pin PA5 (LD2) as digital output push-pull and pin PC13 (B1) as digital input with internal pull-up. Step 5: Set the initial state of the LED (PA5) to OFF (GPIO_PIN_RESET). Step 6: Initialize tracking variable last_toggle_time = 0 and set blink_interval_ms = 200. Step 7: Enter the infinite loop (while(1)). Step 8: Read the button state at pin PC13 using HAL_GPIO_ReadPin(). Step 9: Check if the button is pressed (active LOW: GPIO_PIN_RESET): If Pressed: Check if (HAL_GetTick() - last_toggle_time) >= blink_interval_ms. If the condition is met, update last_toggle_time = HAL_GetTick() and toggle the LED state (HAL_GPIO_TogglePin()). If Released (GPIO_PIN_SET): Force the LED OFF immediately (HAL_GPIO_WritePin() to RESET). Step 10: Repeat from Step 8 continuously. Step 11: Stop (program loop runs indefinitely).
 
 Program
+
 /* USER CODE BEGIN Header */
 /**
   ******************************************************************************
@@ -194,6 +202,9 @@ void assert_failed(uint8_t *file, uint32_t line)
 }
 #endif
 Output
-<img width="576" height="581" alt="image" src="https://github.com/user-attachments/assets/7beb55c9-7b5b-4c5a-b1d6-b17e4887f10e" />
+<img width="576" height="581" alt="image" src="https://github.com/user-attachments/assets/40e49f30-04b1-4ac9-9d24-054a175e0b4c" />
+
+ 
 RESULT
+
 The push button was successfully interfaced with the STM32 microcontroller. The LED connected to PA5 turned ON when the push button connected to PA0 was pressed (logic HIGH) and turned OFF when the push button was released (logic LOW).
